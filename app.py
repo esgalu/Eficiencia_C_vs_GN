@@ -1,5 +1,4 @@
 import streamlit as st
-import plotly.graph_objects as go
 
 # Título de la aplicación
 st.title("Análisis del Cambio de Combustible en Caldera")
