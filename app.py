@@ -52,20 +52,35 @@ if cost_difference > 0:
 else:
     co2_price_per_ton = 0
 
-# Mostrar resultados
+# Mostrar resultados y ecuaciones
 st.header("Resultados del Análisis")
 
 st.subheader("Consumo y Emisiones con Carbón")
-st.write(f"- Consumo anual de carbón: {carbon_consumption_tons:.2f} toneladas")
-st.write(f"- Emisiones anuales de CO2: {carbon_emissions_tons:.2f} toneladas")
-st.write(f"- Costo anual del carbón: ${carbon_cost:,.2f}")
+
+st.markdown(f"""
+- **Capacidad de la caldera:** {caldera_capacity_bhp} BHP
+- **Conversión de BHP a kW:** {caldera_capacity_bhp} BHP × 9.8095 ≈ {caldera_capacity_kw:.2f} kW
+- **Carga Promedio:** {avg_load*100:.0f}%
+- **Energía total utilizada en un año (kWh):** {avg_operational_kw:.2f} kW × {operational_hours} horas ≈ {total_energy_used_kwh:.2f} kWh
+- **Energía total utilizada en un año (kJ):** {total_energy_used_kwh:.2f} kWh × 3600 ≈ {total_energy_used_kj:.2f} kJ
+- **Consumo de carbón (toneladas):** {total_energy_used_kj:.2f} kJ ÷ {caldera_efficiency_carbon:.2f} ÷ {carbon_pci} kJ/kg ≈ {carbon_consumption_tons:.2f} toneladas
+- **Emisiones de CO2 (toneladas):** {carbon_consumption_tons:.2f} toneladas × {carbon_emission_factor} kg CO2/kg ÷ 1000 ≈ {carbon_emissions_tons:.2f} toneladas
+- **Costo del carbón ($):** {carbon_consumption_tons:.2f} toneladas × ${carbon_price_per_ton}/ton ≈ ${carbon_cost:,.2f}
+""")
 
 st.subheader("Consumo y Emisiones con Gas Natural")
-st.write(f"- Consumo anual de gas natural: {gas_consumption_m3:.2f} m³")
-st.write(f"- Emisiones anuales de CO2: {gas_emissions_tons:.2f} toneladas")
-st.write(f"- Costo anual del gas natural: ${gas_cost:,.2f}")
+
+st.markdown(f"""
+- **Energía útil requerida por la caldera:** {total_energy_used_kj:.2f} kJ
+- **Consumo de gas natural (m³):** {total_energy_used_kj:.2f} kJ ÷ {caldera_efficiency_gas:.2f} ÷ {gas_pci} kJ/m³ ≈ {gas_consumption_m3:.2f} m³
+- **Emisiones de CO2 (toneladas):** {gas_consumption_m3:.2f} m³ × {gas_emission_factor} kg CO2/m³ ÷ 1000 ≈ {gas_emissions_tons:.2f} toneladas
+- **Costo del gas natural ($):** {gas_consumption_m3:.2f} m³ × ${gas_price_per_m3}/m³ ≈ ${gas_cost:,.2f}
+""")
 
 st.subheader("Comparativa y Análisis")
-st.write(f"- Reducción anual de emisiones de CO2: {carbon_emissions_tons - gas_emissions_tons:.2f} toneladas")
-st.write(f"- Diferencia anual de costos (Gas Natural más caro): ${cost_difference:,.2f}")
-st.write(f"- Precio necesario de las emisiones de CO2 para igualar costos: ${co2_price_per_ton:,.2f}/tonelada")
+
+st.markdown(f"""
+- **Reducción anual de emisiones de CO2 (toneladas):** {carbon_emissions_tons:.2f} toneladas - {gas_emissions_tons:.2f} toneladas ≈ {carbon_emissions_tons - gas_emissions_tons:.2f} toneladas
+- **Diferencia anual de costos (Gas Natural más caro):** ${gas_cost:,.2f} - ${carbon_cost:,.2f} ≈ ${cost_difference:,.2f}
+- **Precio necesario de las emisiones de CO2 para igualar costos ($/tonelada):** ${cost_difference:,.2f} ÷ {carbon_emissions_tons - gas_emissions_tons:.2f} toneladas ≈ ${co2_price_per_ton:,.2f}/tonelada
+""")
