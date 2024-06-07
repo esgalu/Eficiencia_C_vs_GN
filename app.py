@@ -61,8 +61,8 @@ daily_operational_hours = operational_hours / days_in_year
 date_range = pd.date_range(start='2023-01-01', periods=days_in_year, freq='D')
 
 df_daily_operations = pd.DataFrame({
-    'Date': date_range,
-    'Operational Hours': np.random.normal(loc=daily_operational_hours, scale=daily_operational_hours * 0.1, size=days_in_year)
+    'Fecha': date_range,
+    'Horas Operacionales': np.random.normal(loc=daily_operational_hours, scale=daily_operational_hours * 0.1, size=days_in_year)
 })
 
 # Crear gráfico de serie temporal
