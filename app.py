@@ -1,4 +1,7 @@
 import streamlit as st
+import numpy as np
+import pandas as pd
+import plotly.express as px
 
 # Título de la aplicación
 st.title("Análisis del Cambio de Combustible en Caldera")
@@ -84,3 +87,19 @@ st.markdown(f"""
 - **Diferencia anual de costos (Gas Natural más caro):** \${gas_cost:,.2f} - \${carbon_cost:,.2f} ≈ \${cost_difference:,.2f}
 - **Precio necesario de las emisiones de CO2 para igualar costos (\$/tonelada):** \${cost_difference:,.2f} ÷ {carbon_emissions_tons - gas_emissions_tons:.2f} toneladas ≈ \${co2_price_per_ton:,.2f}/tonelada
 """)
+
+operational_hours_samples = np.random.normal(operational_hours, 10, 365)
+
+days_in_year = 365
+daily_operational_hours = operational_hours / days_in_year
+date_range = pd.date_range(start='2023-01-01', periods=days_in_year, freq='D')
+
+df_daily_operations = pd.DataFrame({
+    'Date': date_range,
+    'Operational Hours': np.random.normal(loc=daily_operational_hours, scale=daily_operational_hours * 0.1, size=days_in_year)
+})
+
+# Crear gráfico de serie temporal
+fig = px.line(df_daily_operations, x='Date', y='Operational Hours', title='Horas Operacionales por Día')
+
+st.plotly_chart(fig)
