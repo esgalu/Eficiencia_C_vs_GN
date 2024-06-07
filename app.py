@@ -65,7 +65,7 @@ st.markdown(f"""
 - **Energía total utilizada en un año (kJ):** {total_energy_used_kwh:.2f} kWh × 3600 ≈ {total_energy_used_kj:.2f} kJ
 - **Consumo de carbón (toneladas):** {total_energy_used_kj:.2f} kJ ÷ {caldera_efficiency_carbon:.2f} ÷ {carbon_pci} kJ/kg ≈ {carbon_consumption_tons:.2f} toneladas
 - **Emisiones de CO2 (toneladas):** {carbon_consumption_tons:.2f} toneladas × {carbon_emission_factor} kg CO2/kg ÷ 1000 ≈ {carbon_emissions_tons:.2f} toneladas
-- **Costo del carbón ($):** {carbon_consumption_tons:.2f} toneladas × ${carbon_price_per_ton}/ton ≈ ${carbon_cost:,.2f}
+- **Costo del carbón (\$):** {carbon_consumption_tons:.2f} toneladas × \${carbon_price_per_ton}/ton ≈ \${carbon_cost:,.2f}
 """)
 
 st.subheader("Consumo y Emisiones con Gas Natural")
@@ -74,13 +74,13 @@ st.markdown(f"""
 - **Energía útil requerida por la caldera:** {total_energy_used_kj:.2f} kJ
 - **Consumo de gas natural (m³):** {total_energy_used_kj:.2f} kJ ÷ {caldera_efficiency_gas:.2f} ÷ {gas_pci} kJ/m³ ≈ {gas_consumption_m3:.2f} m³
 - **Emisiones de CO2 (toneladas):** {gas_consumption_m3:.2f} m³ × {gas_emission_factor} kg CO2/m³ ÷ 1000 ≈ {gas_emissions_tons:.2f} toneladas
-- **Costo del gas natural ($):** {gas_consumption_m3:.2f} m³ × ${gas_price_per_m3}/m³ ≈ ${gas_cost:,.2f}
+- **Costo del gas natural (\$):** {gas_consumption_m3:.2f} m³ × \${gas_price_per_m3}/m³ ≈ \${gas_cost:,.2f}
 """)
 
 st.subheader("Comparativa y Análisis")
 
 st.markdown(f"""
 - **Reducción anual de emisiones de CO2 (toneladas):** {carbon_emissions_tons:.2f} toneladas - {gas_emissions_tons:.2f} toneladas ≈ {carbon_emissions_tons - gas_emissions_tons:.2f} toneladas
-- **Diferencia anual de costos (Gas Natural más caro):** ${gas_cost:,.2f} - ${carbon_cost:,.2f} ≈ ${cost_difference:,.2f}
-- **Precio necesario de las emisiones de CO2 para igualar costos ($/tonelada):** ${cost_difference:,.2f} ÷ {carbon_emissions_tons - gas_emissions_tons:.2f} toneladas ≈ ${co2_price_per_ton:,.2f}/tonelada
+- **Diferencia anual de costos (Gas Natural más caro):** \${gas_cost:,.2f} - \${carbon_cost:,.2f} ≈ \${cost_difference:,.2f}
+- **Precio necesario de las emisiones de CO2 para igualar costos ($/tonelada):** \${cost_difference:,.2f} ÷ {carbon_emissions_tons - gas_emissions_tons:.2f} toneladas ≈ \${co2_price_per_ton:,.2f}/tonelada
 """)
