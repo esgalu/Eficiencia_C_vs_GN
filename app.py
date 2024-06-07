@@ -6,6 +6,8 @@ import plotly.express as px
 # Título de la aplicación
 st.title("Análisis del Cambio de Combustible en Caldera")
 
+st.write("Estiven Garcia - Mauricio Saldarriaga")
+
 # Parámetros de entrada en la barra lateral
 st.sidebar.header("Ingrese los datos básicos")
 
