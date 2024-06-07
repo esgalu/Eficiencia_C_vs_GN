@@ -82,5 +82,5 @@ st.subheader("Comparativa y Análisis")
 st.markdown(f"""
 - **Reducción anual de emisiones de CO2 (toneladas):** {carbon_emissions_tons:.2f} toneladas - {gas_emissions_tons:.2f} toneladas ≈ {carbon_emissions_tons - gas_emissions_tons:.2f} toneladas
 - **Diferencia anual de costos (Gas Natural más caro):** \${gas_cost:,.2f} - \${carbon_cost:,.2f} ≈ \${cost_difference:,.2f}
-- **Precio necesario de las emisiones de CO2 para igualar costos ($/tonelada):** \${cost_difference:,.2f} ÷ {carbon_emissions_tons - gas_emissions_tons:.2f} toneladas ≈ \${co2_price_per_ton:,.2f}/tonelada
+- **Precio necesario de las emisiones de CO2 para igualar costos (\$/tonelada):** \${cost_difference:,.2f} ÷ {carbon_emissions_tons - gas_emissions_tons:.2f} toneladas ≈ \${co2_price_per_ton:,.2f}/tonelada
 """)
